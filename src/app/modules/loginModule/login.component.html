@@ -1,0 +1,16 @@
+<section class="content">
+  <form [formGroup]="form" class="content__form">
+    <input type="text" name="usuario" formControlName="user" placeholder="Usuario" />
+    <input type="password" name="contrasena" formControlName="password" placeholder="Contraseña" />
+    <div class="content__form_options">
+      <div>
+        <a class="content__form_redirect" href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+      <div class="content__button">
+        <button type="button" (click)="login()">
+          <span>entrar</span>
+        </button>
+      </div>
+    </div>  
+  </form>
+</section>
