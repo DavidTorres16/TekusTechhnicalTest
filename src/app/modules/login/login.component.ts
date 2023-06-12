@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { catchError } from 'rxjs/operators';
-import { firstValueFrom, from } from 'rxjs';
+import { firstValueFrom} from 'rxjs';
 
 
 @Component({
@@ -36,6 +35,8 @@ export class LoginComponent {
       const token: any = await firstValueFrom(this.authService.getToken(user, password))
     
       if (token.Status == 1) {
+        this.rout.navigate(['/main']);
+        localStorage.setItem('token', token.Token);
         console.log('Token de sesión:', token);
       } else {
         console.log('Inicio de sesión fallido');
