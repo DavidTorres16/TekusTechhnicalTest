@@ -1,0 +1,87 @@
+<div class="page">
+    <div class="content">
+        <form (ngSubmit)="searchSubscribers()" class="content__form">
+            <div>
+                <h1>Search subscribers</h1>
+            </div>
+            <div>
+                <input type="text" id="criteria" [(ngModel)]="searchCriteria" name="criteria" placeholder="Criteria">
+            </div>
+            <div>
+                <input type="number" id="page" [(ngModel)]="searchPage" name="page" placeholder="Page">
+            </div>
+            <div>
+                <input type="number" id="count" [(ngModel)]="searchCount" name="count" placeholder="count">
+            </div>
+            <div>
+                <select id="sortOrder" [(ngModel)]="searchSortOrder" name="sortOrder">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </div>
+            <div>
+                <input type="number" id="sortType" [(ngModel)]="searchSortType" name="sortType" placeholder="Sort type">
+            </div>
+            <div class="content__button">
+                <button type="submit" (click)="searchSubscribers()">Search</button>
+            </div>
+        </form>
+        <div *ngIf="subscribers.length > 0">
+            <h2>Subscribers</h2>
+            <ul>
+                <li *ngFor="let subscriber of subscribers">
+                    <strong>Name:</strong> {{ subscriber.name }}<br>
+                    <strong>Email:</strong> {{ subscriber.email }}<br>
+                    <strong>Country Code:</strong> {{ subscriber.countryCode }}<br>
+                    <strong>Phone Number:</strong> {{ subscriber.phoneNumber }}<br>
+                    <strong>Area:</strong> {{ subscriber.area }}<br>
+                    <strong>Job Title:</strong> {{ subscriber.jobTitle }}<br>
+                    <strong>Topics:</strong> {{ subscriber.topics.join(', ') }}<br>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <form [formGroup]="subscriberForm" class="content__form">
+            <div *ngIf="subscribers.length > 0  && !createAction">
+                <h1>Update subscriber</h1>
+            </div>
+            <div *ngIf="subscribers.length == 0  && createAction">
+                <h1>Create subscriber</h1>
+            </div>
+            <div>
+                <input type="text" id="name" formControlName="name" required placeholder="Name">
+            </div>
+            <div>
+                <input type="email" id="email" formControlName="email" required placeholder="Email">
+            </div>
+            <div>
+                <select id="countryCode" formControlName="countryCode" required>
+                    <option *ngFor="let country of countriesList" [value]="country.Code">{{ country.Name }}</option>   
+                </select>
+            </div>
+            <div>
+                <input type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="Phone number">
+            </div>
+            <div>
+                <input type="text" id="area" formControlName="area" placeholder="Area">
+            </div>
+            <div>
+                <input type="text" id="jobTitle" formControlName="jobTitle" placeholder="Job title">
+            </div>
+            <div>
+                <select id="topics" formControlName="topics" multiple>
+                    <option *ngFor="let topic of topicsList" [value]="topic">{{ topic }}</option>   
+                </select>
+            </div>
+            <div class="content__button" *ngIf="subscribers.length > 0  && !createAction">
+                <button type="submit" (click)="updateSubscriber()">Update</button>
+            </div>
+            <div class="content__button" *ngIf="subscribers.length == 0  && createAction">
+                <button type="submit" (click)="createSubscriber()">Create</button>
+            </div>
+        </form>
+    </div>    
+</div>

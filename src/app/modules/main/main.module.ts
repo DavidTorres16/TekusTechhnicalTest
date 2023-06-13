@@ -5,16 +5,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MAIN_ROUTES } from './main.routes';
 import { HttpClientModule } from '@angular/common/http';
+import { SubscribersComponent } from './subscribers/subscribers.component';
+import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
-    MainComponent
+    MainComponent,
+    SubscribersComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(MAIN_ROUTES),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class MainModule { }

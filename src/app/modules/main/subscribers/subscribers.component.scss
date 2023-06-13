@@ -1,0 +1,176 @@
+.page{
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between; 
+
+    .content {
+        background: var(--content-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    
+        &__form {
+            width: 420px;
+            background: var(--content-color);
+            padding: 30px;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            border-radius: var(--boxes-radius);
+            box-shadow: inset 5px -5px 10px #abb1b4,
+                        inset -5px 5px 10px #ffffff;
+    
+            > div{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            } 
+    
+            div > input {
+                border: none;
+                padding: 0.7rem;
+                border-radius: 1rem;
+                background: var(--gray-6);
+                box-shadow: 20px 20px 60px var(--gray-2), -20px -20px 60px #ffffff;
+                transition: 0.3s;
+            
+                &:focus {
+                    outline-color: var(--gray-3);
+                    background: var(--gray-6);
+                    box-shadow: inset 20px 20px 60px var(--gray-6), inset -20px -20px 60px #ffffff;
+                    transition: 0.3s;
+                }
+            }
+    
+            &_options{
+    
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            
+                &_redirect {
+                    font-size: 14px;
+                    text-decoration: none;
+                    cursor: pointer;
+                    font-weight: bolder;
+                    color: var(--gray-5);
+                }
+            }   
+    
+            select {
+                border: none;
+                padding: 0.7rem;
+                border-radius: 1rem;
+                background: var(--gray-6);
+                box-shadow: 20px 20px 60px var(--gray-2), -20px -20px 60px #ffffff;
+                transition: 0.3s;
+                width: 50%;
+            
+                &:focus {
+                    outline-color: var(--gray-3);
+                    background: var(--gray-6);
+                    box-shadow: inset 20px 20px 60px var(--gray-6), inset -20px -20px 60px #ffffff;
+                    transition: 0.3s;
+                }
+            }
+            
+        }
+    
+        &__button {
+            display: flex;
+            justify-content: center;
+        
+            > button {
+                align-items: center;
+                appearance: none;
+                background-color: var(--gray-6);
+                border-radius: 4px;
+                border-width: 0;
+                box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px, rgba(45, 35, 66, 0.15) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+                box-sizing: border-box;
+                color: #36395A;
+                cursor: pointer;
+                display: inline-flex;
+                font-family: "JetBrains Mono",monospace;
+                height: 48px;
+                justify-content: center;
+                line-height: 1;
+                list-style: none;
+                overflow: hidden;
+                padding-left: 16px;
+                padding-right: 16px;
+                position: relative;
+                text-align: left;
+                text-decoration: none;
+                transition: box-shadow .15s,transform .15s;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                white-space: nowrap;
+                will-change: box-shadow,transform;
+                font-size: 18px;
+        
+                &:focus {
+                box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+                }
+        
+                &:hover {
+                box-shadow: rgba(45, 35, 66, 0.3) 0 4px 8px, rgba(45, 35, 66, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+                transform: translateY(-2px);
+                } 
+        
+                &:active {
+                box-shadow: #D6D6E7 0 3px 7px inset;
+                transform: translateY(2px);
+                }
+        
+                align-items: center;    
+                appearance: none;
+                background-color: var(--gray-6);
+                border-radius: 4px;
+                border-width: 0;
+                box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px, rgba(45, 35, 66, 0.15) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+                box-sizing: border-box;
+                color: #36395A;
+                cursor: pointer;
+                display: inline-flex;
+                font-family: "JetBrains Mono",monospace;
+                height: 48px;
+                justify-content: center;
+                line-height: 1;
+                list-style: none;
+                overflow: hidden;
+                padding-left: 16px;
+                padding-right: 16px;
+                position: relative;
+                text-align: left;
+                text-decoration: none;
+                transition: box-shadow .15s,transform .15s;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                white-space: nowrap;
+                will-change: box-shadow,transform;
+                font-size: 18px;
+        
+                &:focus {
+                box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+                }
+        
+                &:hover {
+                box-shadow: rgba(45, 35, 66, 0.3) 0 4px 8px, rgba(45, 35, 66, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+                transform: translateY(-2px);
+                }
+        
+                &:active {
+                box-shadow: #D6D6E7 0 3px 7px inset;
+                transform: translateY(2px);
+                }
+            }
+        }
+    
+        
+    }
+}
+
