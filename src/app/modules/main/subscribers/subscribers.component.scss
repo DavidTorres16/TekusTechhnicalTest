@@ -9,6 +9,21 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+
+        div > ul{
+            overflow-y: auto;
+            height: 260px;
+        }
+
+        div > ul > li{
+            margin: 10px 0 10px 0;
+            padding: 20px;
+            width: 420px;
+            background: var(--content-color);
+            border-radius: var(--boxes-radius);
+            box-shadow: inset 5px -5px 10px #abb1b4,
+                        inset -5px 5px 10px #ffffff;
+        }
     
         &__form {
             width: 420px;
@@ -20,10 +35,14 @@
             border-radius: var(--boxes-radius);
             box-shadow: inset 5px -5px 10px #abb1b4,
                         inset -5px 5px 10px #ffffff;
+
+            &__searchId{
+                display: flex;
+                flex-direction: column;
+            }
     
             > div{
                 display: flex;
-                align-items: center;
                 justify-content: space-between;
             } 
     
@@ -80,6 +99,7 @@
         &__button {
             display: flex;
             justify-content: center;
+            align-items:center ;
         
             > button {
                 align-items: center;

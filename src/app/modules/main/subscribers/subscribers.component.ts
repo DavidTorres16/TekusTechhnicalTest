@@ -25,7 +25,9 @@ export class SubscribersComponent implements OnInit {
 
   createAction: boolean = true;
   deleteAction: boolean = false;
+  invalidForm: boolean = false;
 
+  subId: number = 0;
   name: string = '';
   email: string =  '';
   countryCody: string = '';
@@ -34,7 +36,10 @@ export class SubscribersComponent implements OnInit {
   jobTitle: string = '';
   topics: [] = []; 
 
-  subscribers: any[] = [];
+  subscribers: any[] = [ 
+    { "SystemId": null, "Area": "", "PublicId": 161, "CountryCode": "CO", "CountryName": "Colombia", "Name": "prueba", "Email": "carlosurrego82@gmail.com", "JobTitle": "", "PhoneNumber": "3148654325", "PhoneCode": "57", "PhoneCodeAndNumber": "(57) 3148654325", "LastActivityUtc": null, "LastActivity": null, "SubscriptionDate": null, "SubscriptionMethod": 0, "SubscriptionState": 0, "SubscriptionStateDescription": "Pendiente", "Topics": [], "Activity": "--", "ConnectionState": 2, "Id": 7914 }, 
+    { "SystemId": null, "Area": "Desarrollo", "PublicId": 162, "CountryCode": "CO", "CountryName": "Colombia", "Name": "Carlos Urrego", "Email": "carlos.urrego@tekus.co", "JobTitle": "QA", "PhoneNumber": "3102001350", "PhoneCode": "57", "PhoneCodeAndNumber": "(57) 3102001350", "LastActivityUtc": "2021-02-27T01:41:24.377", "LastActivity": "2021-02-26T20:41:24.377", "SubscriptionDate": "22/02/2021 4:36 p. m.", "SubscriptionMethod": 0, "SubscriptionState": 1, "SubscriptionStateDescription": "Activo", "Topics": [], "Activity": "5d 15h ", "ConnectionState": 2, "Id": 7927 } 
+  ];
   searchCriteria: string = "";
   searchPage: number = 0;
   searchCount: number = 0;
@@ -59,14 +64,17 @@ export class SubscribersComponent implements OnInit {
 
   onSubmit(): void {
     if (this.subscriberForm.invalid) {
-      // Handle invalid form submission
       return;
     }
-
-    // Form is valid, proceed with submission
-    const formData = this.subscriberForm.value;
-    // ...
   }
+
+  changeDeleteAction(): void {
+    this.deleteAction = !this.deleteAction
+  }
+
+  changeCreateAction(): void {
+    this.createAction = true
+  } 
 
   getCountries(): void {
     this.countriesService.getCountries().subscribe(
@@ -80,10 +88,12 @@ export class SubscribersComponent implements OnInit {
 
   createSubscriber(): void {
     if (this.subscriberForm.invalid) {
-
+      this.invalidForm = true
       return;
     }
   
+    this.invalidForm = false
+
     const formData = this.subscriberForm.value;
     
     this.subscribersService.createSubscribers([formData]).subscribe(
@@ -104,9 +114,11 @@ export class SubscribersComponent implements OnInit {
 
   updateSubscriber(): void {
     if (this.subscriberForm.invalid) {
-
+      this.invalidForm = true
       return;
     }
+  
+    this.invalidForm = false
   
     const formData = this.subscriberForm.value;
     
@@ -139,25 +151,46 @@ export class SubscribersComponent implements OnInit {
       sortType
     ).subscribe(
       {
-        next: (response) => this.subscribers = response.subscribers,
+        next: (response) => this.subscribers = response.Data,
         error: (e) => console.error(e),
         complete: () => console.info('complete') 
       }
     );
+  }
+
+  searchSubscribersById(): void {
+    this.subscribersService.getSubscriberById(this.subId).subscribe(
+      {
+        next: (response) => this.subscribers = [response],
+        error: (e) => console.error(e),
+        complete: () => console.info('complete')
+      }
+    )
   }
 
   deleteSubscriberById(Id: number): void {
     this.subscribersService.deleteSubscriberById(Id).subscribe(
       {
-        next: (response) => this.searchSubscribers(),
+        next: (response) => console.log(response),
         error: (e) => console.error(e),
-        complete: () => console.info('complete') 
+        complete: () => this.searchSubscribers() 
       }
     );
   }
 
-  setSubscriber(): void {
-
+  setSubscriber(subscriber: any): void {
+    this.subscriberId = subscriber.Id
+    this.subscriberForm.patchValue({
+          name: subscriber.Name,
+          email: subscriber.Email,
+          countryCode: subscriber.CountryCode,
+          phoneNumber: subscriber.PhoneNumber,
+          area: subscriber.Area,
+          jobTitle: subscriber.JobTitle,
+          topics: subscriber.Topics
+        }
+    );
+    this.createAction = false
   }
 
 }

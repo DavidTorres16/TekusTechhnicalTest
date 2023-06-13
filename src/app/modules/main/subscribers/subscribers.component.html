@@ -4,6 +4,13 @@
             <div>
                 <h1>Search subscribers</h1>
             </div>
+            <div class="content__form__searchId">
+                <div>
+                    <p>For ID search only</p>
+                    <input type="text" id="subId" [(ngModel)]="subId" name="subId" placeholder="Id">
+                </div>
+            </div>
+            <p>Common search</p>
             <div>
                 <input type="text" id="criteria" [(ngModel)]="searchCriteria" name="criteria" placeholder="Criteria">
             </div>
@@ -24,6 +31,8 @@
             </div>
             <div class="content__button">
                 <button type="submit" (click)="searchSubscribers()">Search</button>
+                <p>or</p>
+                <button type="submit" (click)="searchSubscribersById()">Search by ID</button>
             </div>
         </form>
         <div *ngIf="subscribers.length > 0">
@@ -38,13 +47,13 @@
                     <strong>Job Title:</strong> {{ subscriber.JobTitle }}<br>
                     <strong>Topics:</strong> {{ subscriber.Topics.join(', ') }}<br>
 
-                    <div *ngIf="!deleteAction">
-                        <button type="submit" (click)="setSubscriber()">Update</button>
-                        <button type="submit" (click)="deleteAction = false">Delete</button>
+                    <div *ngIf="!deleteAction" class="content__button">
+                        <button type="submit" (click)="setSubscriber(subscriber)">Update</button>
+                        <button type="submit" (click)="changeDeleteAction()">Delete</button>
                     </div>
-                    <div *ngIf="deleteAction">
+                    <div *ngIf="deleteAction" class="content__button">
                         <h3>Are tou sure?</h3>
-                        <button type="submit" (click)="deleteAction = true">No, go back</button>
+                        <button type="submit" (click)="changeDeleteAction()">No, go back</button>
                         <button type="submit" (click)="deleteSubscriberById(subscriber.Id)">Yes, Delete</button>
                     </div>
                 </li>
@@ -58,7 +67,7 @@
             <div *ngIf="subscribers.length > 0  && !createAction">
                 <h1>Update subscriber</h1>
             </div>
-            <div *ngIf="subscribers.length == 0  && createAction">
+            <div *ngIf="createAction">
                 <h1>Create subscriber</h1>
             </div>
             <div>
@@ -86,10 +95,13 @@
                     <option *ngFor="let topic of topicsList" [value]="topic">{{ topic }}</option>   
                 </select>
             </div>
+            <div *ngIf="invalidForm"><h3>Invalid form, completa the data!!</h3></div>
             <div class="content__button" *ngIf="subscribers.length > 0  && !createAction">
                 <button type="submit" (click)="updateSubscriber()">Update</button>
+                <p>or</p>
+                <button type="submit" (click)="changeCreateAction()">Create new sub</button>
             </div>
-            <div class="content__button" *ngIf="subscribers.length == 0  && createAction">
+            <div class="content__button" *ngIf="createAction">
                 <button type="submit" (click)="createSubscriber()">Create</button>
             </div>
         </form>
