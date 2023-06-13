@@ -147,7 +147,13 @@ export class SubscribersComponent implements OnInit {
   }
 
   deleteSubscriberById(Id: number): void {
-    
+    this.subscribersService.deleteSubscriberById(Id).subscribe(
+      {
+        next: (response) => this.searchSubscribers(),
+        error: (e) => console.error(e),
+        complete: () => console.info('complete') 
+      }
+    );
   }
 
   setSubscriber(): void {
