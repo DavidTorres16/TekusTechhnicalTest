@@ -30,15 +30,25 @@
             <h2>Subscribers</h2>
             <ul>
                 <li *ngFor="let subscriber of subscribers">
-                    <strong>Name:</strong> {{ subscriber.name }}<br>
-                    <strong>Email:</strong> {{ subscriber.email }}<br>
-                    <strong>Country Code:</strong> {{ subscriber.countryCode }}<br>
-                    <strong>Phone Number:</strong> {{ subscriber.phoneNumber }}<br>
-                    <strong>Area:</strong> {{ subscriber.area }}<br>
-                    <strong>Job Title:</strong> {{ subscriber.jobTitle }}<br>
-                    <strong>Topics:</strong> {{ subscriber.topics.join(', ') }}<br>
+                    <strong>Name:</strong> {{ subscriber.Name }}<br>
+                    <strong>Email:</strong> {{ subscriber.Email }}<br>
+                    <strong>Country Code:</strong> {{ subscriber.CountryCode }}<br>
+                    <strong>Phone Number:</strong> {{ subscriber.PhoneNumber }}<br>
+                    <strong>Area:</strong> {{ subscriber.Area }}<br>
+                    <strong>Job Title:</strong> {{ subscriber.JobTitle }}<br>
+                    <strong>Topics:</strong> {{ subscriber.Topics.join(', ') }}<br>
+
+                    <div *ngIf="!deleteAction">
+                        <button type="submit" (click)="setSubscriber()">Update</button>
+                        <button type="submit" (click)="deleteAction = false">Delete</button>
+                    </div>
+                    <div *ngIf="deleteAction">
+                        <h3>Are tou sure?</h3>
+                        <button type="submit" (click)="deleteAction = true">No, go back</button>
+                        <button type="submit" (click)="deleteSubscriberById(subscriber.Id)">Yes, Delete</button>
+                    </div>
                 </li>
-            </ul>
+            </ul>   
         </div>
     </div>
 

@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Vali
 import { SubscribersService } from 'src/app/services/subscribers/subscribers.service';
 import { CountriesService } from 'src/app/services/countries/countries.service';
 
+
 @Component({
   selector: 'app-subscribers',
   templateUrl: './subscribers.component.html',
@@ -23,6 +24,7 @@ export class SubscribersComponent implements OnInit {
   ];
 
   createAction: boolean = true;
+  deleteAction: boolean = false;
 
   name: string = '';
   email: string =  '';
@@ -142,6 +144,14 @@ export class SubscribersComponent implements OnInit {
         complete: () => console.info('complete') 
       }
     );
+  }
+
+  deleteSubscriberById(Id: number): void {
+    
+  }
+
+  setSubscriber(): void {
+
   }
 
 }
